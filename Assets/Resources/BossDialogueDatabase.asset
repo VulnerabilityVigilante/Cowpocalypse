@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b130f89e5db22c4ebaf3dedcdb8e85b, type: 3}
+  m_Name: BossDialogueDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueDatabase
+  dialogues:
+  - questID: RepairFenceQuest
+    introLines:
+    - "You're back just in time, partner. The animals have been acting strange lately
+      \u2014 restless at night, pacing the fence line..."
+    - "Every morning I find more boards torn loose, like something big leaned against
+      them\u2026 or tried to climb over."
+    - "I can\u2019t tell if it\u2019s the wind, or if they\u2019re being spooked
+      by something out there in the dark."
+    - "If you\u2019ve got the hands for it, I need that fence mended before we lose
+      the whole herd."
+    activeLines:
+    - "The animals were uneasy again last night. You feel that chill in the air?
+      Something\u2019s not right."
+    - "I keep hearing the posts creak after midnight, like something\u2019s pushing
+      on them\u2026 slow and heavy."
+    - "Stay sharp out there while you\u2019re working. If you hear breathing \u2014
+      don\u2019t look toward the trees."
+    completeLines:
+    - "You fixed it, then? That\u2019s a relief\u2026 though I could swear the air\u2019s
+      heavier now that it\u2019s done."
+    - "Funny thing \u2014 the animals are quiet tonight. Too quiet."
+    - "If you see anything out there beyond the fence line, don\u2019t try to be
+      a hero. Just come running."
+  allQuestsCompleteLines:
+  - "You\u2019ve done everything I asked, and the ranch looks whole again\u2026 but
+    some nights I still hear them."
+  - "It\u2019s not the animals. It\u2019s deeper than that. The kind of sound you
+    feel in your ribs."
+  - "Keep your eyes open out there, partner. Fences don\u2019t stop what comes crawling
+    under."

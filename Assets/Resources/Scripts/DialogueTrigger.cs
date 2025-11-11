@@ -50,6 +50,9 @@ public class DialogueTrigger : MonoBehaviour
     {
         InteractUI.Instance.HidePrompt();
 
+        Debug.Log($"[DialogueTrigger] NextQuestID check: {questGiver.GetNextQuestID()}");
+
+
         // ✅ If there’s no quest giver or no DB, show default text
         if (questGiver == null || questGiver.dialogueDatabase == null)
         {
@@ -57,18 +60,19 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
-        // ✅ Step: Check if any parent quest was completed but not yet rewarded
+        // ✅ Step 1: Check if any parent quest was completed but not yet rewarded
         if (questGiver != null)
         {
             foreach (string id in questGiver.parentQuestIDs)
             {
                 Quest quest = QuestManager.Instance.quests.Find(q => q.questID == id);
-                if (quest != null && quest.state == QuestState.Completed)
+                if (quest == null) continue;
+
+                // ✅ Handle un-rewarded completed quests
+                if (quest.state == QuestState.Completed && !questGiver.HasBeenRewarded(id))
                 {
-                    // Try to give the reward
                     questGiver.TryGiveQuestReward();
 
-                    // After rewarding, show the completion dialogue
                     var completedDialogue = questGiver.dialogueDatabase?.GetDialogue(id);
                     if (completedDialogue != null && completedDialogue.completeLines.Length > 0)
                     {
@@ -82,35 +86,12 @@ public class DialogueTrigger : MonoBehaviour
                             "Come see me again when you're ready for another job."
                         });
                     }
-
-                    return; // stop here since we handled this interaction
+                    return;
                 }
             }
         }
 
-
-        // --- Handle quest dialogue logic ---
-        if (questGiver.AllQuestsComplete())
-        {
-            // ✅ Check if there’s a special "all quests done" message in the dialogue database
-            var finalDialogue = questGiver.dialogueDatabase.allQuestsCompleteLines;
-            if (finalDialogue != null && finalDialogue.Length > 0)
-            {
-                DialogueUI.Instance.ShowDialogue(finalDialogue);
-            }
-            else
-            {
-                DialogueUI.Instance.ShowDialogue(new string[]
-                {
-                    "You’ve done a fine job out there!",
-                    "The ranch is back in shape, thanks to you."
-                });
-            }
-
-            return;
-        }
-
-
+        // ✅ Step 2: Check if player currently has an active quest
         string activeQuest = questGiver.GetActiveQuestID();
         if (!string.IsNullOrEmpty(activeQuest))
         {
@@ -130,24 +111,63 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
+        // ✅ Step 3: Offer the next quest if available
         string nextQuest = questGiver.GetNextQuestID();
         if (!string.IsNullOrEmpty(nextQuest))
         {
-            var nextDialogue = questGiver.dialogueDatabase.GetDialogue(nextQuest);
-            string[] introLines = (nextDialogue != null && nextDialogue.introLines.Length > 0)
-                ? nextDialogue.introLines
-                : defaultDialogueLines;
+            var nextDialogue = questGiver.dialogueDatabase.GetDialogue(nextQuest); // DB may be null for this quest
+            string[] offerLines;
+
+            if (nextDialogue != null && nextDialogue.introLines != null && nextDialogue.introLines.Length > 0)
+            {
+                offerLines = nextDialogue.introLines;
+            }
+            else
+            {
+                // Neutral fallback text so it doesn't look like quest 1 dialogue
+                offerLines = new string[]
+                {
+                    "I’ve got another job for you.",
+                    "Interested?"
+                };
+            }
+
+            // Add strong debug so we can see the quest ID being offered
+            Debug.Log($"[DialogueTrigger] Offering next quest: {nextQuest}");
 
             DialogueUI.Instance.ShowDialogue(
-                introLines,
+                offerLines,
                 () => OnAccept(nextQuest),
                 () => OnDecline()
             );
+            return; // important
+        }
+
+
+        // ✅ Step 4: Only show this if there’s no next quest available
+        if (questGiver.AllQuestsComplete())
+        {
+            var finalDialogue = questGiver.dialogueDatabase.allQuestsCompleteLines;
+            if (finalDialogue != null && finalDialogue.Length > 0)
+            {
+                DialogueUI.Instance.ShowDialogue(finalDialogue);
+            }
+            else
+            {
+                DialogueUI.Instance.ShowDialogue(new string[]
+                {
+                    "You’ve done a fine job out there!",
+                    "The ranch is back in shape, thanks to you."
+                });
+            }
+            return;
         }
     }
 
     void OnAccept(string questID)
     {
+        Debug.Log($"[DialogueTrigger] Player accepted quest: {questID}");
+        
         if (questGiver != null)
         {
             questGiver.GiveNextParentQuest();
@@ -160,7 +180,7 @@ public class DialogueTrigger : MonoBehaviour
             // You can either repeat the final intro line or show a short follow-up
             DialogueUI.Instance.ShowDialogue(new string[]
             {
-                "Glad to have your help. You can start with the fence by the pasture — watch your step out there."
+                "Glad to have your help. Watch your step out there."
             });
         }
         else
@@ -180,4 +200,6 @@ public class DialogueTrigger : MonoBehaviour
             "Ah, maybe next time. Take care out there!"
         });
     }
+
+
 }

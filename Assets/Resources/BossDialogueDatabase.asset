@@ -36,6 +36,29 @@ MonoBehaviour:
     - "Funny thing \u2014 the animals are quiet tonight. Too quiet."
     - "If you see anything out there beyond the fence line, don\u2019t try to be
       a hero. Just come running."
+  - questID: SpendAtShopQuest
+    introLines:
+    - "You\u2019ve earned a break after all that work, kid."
+    - "Why don\u2019t you head over to the shop on the far side of the ranch?"
+    - "Pick up a can of Red Bull and a pack of cigarettes. Trust me, they\u2019ll
+      come in handy."
+    - "They\u2019re not just for show either. Both will help patch you up when you\u2019re
+      hurt.  "
+    activeLines:
+    - "Don\u2019t tell me you\u2019re still standing here empty-handed."
+    - "Head over to the shop. It\u2019s on the far side of the ranch just behind
+      us."
+    - "Buy yourself that Red Bull and pack of cigarettes. You\u2019ll see how they
+      work soon enough."
+    completeLines:
+    - "Got your Red Bull and smokes? Good. You\u2019ll need them."
+    - The Red Bull will give you a quick kick. Heals you up in a flash, but not by
+      much.
+    - The cigarettes are a little different. Pop one in your mouth and every puff
+      gives a short, sharp bit of healing.
+    - "You\u2019ll get more health out of a cigarette overall, and you can keep one
+      lit to heal faster while you move."
+    - "Don\u2019t overdo it though. That\u2019s advice for both healing and life."
   allQuestsCompleteLines:
   - "You\u2019ve done everything I asked, and the ranch looks whole again\u2026 but
     some nights I still hear them."

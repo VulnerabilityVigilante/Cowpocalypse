@@ -4,14 +4,17 @@ using System.Collections.Generic;
 public class QuestGiver : MonoBehaviour
 {
     [Header("Parent Quests (in order)")]
-    public List<string> parentQuestIDs = new List<string> { "RepairFenceQuest" };
+    public List<string> parentQuestIDs = new List<string> {
+        "RepairFenceQuest",
+        "SpendAtShopQuest"
+    };
 
     [Header("Dialogue Database")]
     public DialogueDatabase dialogueDatabase; // 👈 Added this line
 
     // This keeps track of the last quest that was given or completed
     private string currentQuestID = null;
-    
+
     private HashSet<string> rewardedQuests = new HashSet<string>();
 
 
@@ -30,12 +33,41 @@ public class QuestGiver : MonoBehaviour
     {
         foreach (string id in parentQuestIDs)
         {
-            QuestState state = QuestManager.Instance.GetQuestState(id);
+            // Trim in case there are invisible spaces in quest IDs
+            string trimmedID = id.Trim();
+
+            // Try to find the quest in QuestManager
+            Quest quest = QuestManager.Instance.quests.Find(q => q.questID.Trim() == trimmedID);
+
+            // If not found, log a clear warning (helps detect typos)
+            if (quest == null)
+            {
+                Debug.LogWarning($"[QuestGiver] Quest '{trimmedID}' not found in QuestManager!");
+                continue;
+            }
+
+            QuestState state = quest.state;
+
+            // Log state info for debugging visibility
+            Debug.Log($"[QuestGiver] Checking quest '{trimmedID}' | state = {state} | rewarded = {rewardedQuests.Contains(trimmedID)}");
+
+            // ✅ Skip any quests that were already rewarded
+            if (rewardedQuests.Contains(trimmedID))
+                continue;
+
+            // ✅ Return the first not-started quest
             if (state == QuestState.NotStarted)
-                return id;
+            {
+                Debug.Log($"[QuestGiver] Next available quest: {trimmedID}");
+                return trimmedID;
+            }
         }
+
+        Debug.Log("[QuestGiver] No next quest found — either all rewarded or in progress.");
         return null;
     }
+
+
 
     public bool AllQuestsComplete()
     {
@@ -49,36 +81,52 @@ public class QuestGiver : MonoBehaviour
 
     public void GiveNextParentQuest()
     {
-        if (AllQuestsComplete())
+        Debug.Log("---- QUEST HANDOFF DEBUG ----");
+        foreach (string id in parentQuestIDs)
         {
-            Debug.Log("All quests are complete!");
-            return;
+            Debug.Log($"[QuestGiver] '{id}' state = {QuestManager.Instance.GetQuestState(id)}");
         }
 
         string nextQuestID = GetNextQuestID();
+        Debug.Log($"[QuestGiver] Next quest candidate: {nextQuestID}");
 
-        if (string.IsNullOrEmpty(nextQuestID))
+        if (!string.IsNullOrEmpty(nextQuestID))
         {
-            Debug.Log("No new quest to give (active or all complete).");
+            Quest quest = QuestManager.Instance.quests.Find(q => q.questID == nextQuestID);
+            if (quest == null)
+            {
+                Debug.LogWarning($"[QuestGiver] Quest '{nextQuestID}' NOT FOUND in QuestManager. Check the QuestManager list!");
+                return;
+            }
+
+            QuestManager.Instance.StartQuest(nextQuestID);
+            Debug.Log($"[QuestGiver] ✅ Started parent quest: {nextQuestID}");
+
+            // Auto-start subtasks if defined on the parent
+            if (quest.requiredSubtaskIDs != null)
+            {
+                foreach (string sub in quest.requiredSubtaskIDs)
+                {
+                    QuestManager.Instance.StartQuest(sub);
+                    Debug.Log($"[QuestGiver] ✅ Auto-started subquest: {sub}");
+                }
+            }
             return;
         }
 
-        QuestManager.Instance.StartQuest(nextQuestID);
-        currentQuestID = nextQuestID;
-
-        // Auto-start subtasks
-        Quest parent = QuestManager.Instance.quests.Find(q => q.questID == nextQuestID);
-        if (parent != null && parent.requiredSubtaskIDs != null)
+        if (AllQuestsComplete())
         {
-            foreach (string sub in parent.requiredSubtaskIDs)
-            {
-                QuestManager.Instance.StartQuest(sub);
-                Debug.Log($"Subquest started: {sub}");
-            }
+            Debug.Log("[QuestGiver] 🎯 All parent quests complete.");
+            return;
         }
 
-        Debug.Log($"Quest started: {nextQuestID}");
+        Debug.Log("[QuestGiver] ⚠️ No new quest to give.");
     }
+
+
+
+
+
     public void TryGiveQuestReward()
     {
         // Find the last parent quest that was completed but not yet rewarded
@@ -101,6 +149,12 @@ public class QuestGiver : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    public bool HasBeenRewarded(string questID)
+    {
+        return rewardedQuests.Contains(questID);
     }
 
 }

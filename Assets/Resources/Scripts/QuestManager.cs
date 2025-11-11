@@ -49,13 +49,14 @@ public class QuestManager : MonoBehaviour
         {
             quest.state = QuestState.InProgress;
             Debug.Log($"Quest started: {quest.questID}");
-            QuestEvents.OnQuestStarted?.Invoke(id); // ✅ trigger event safely
+            QuestEvents.OnQuestStarted?.Invoke(id); // event for QuestSpawnGate
         }
         else if (quest == null)
         {
             Debug.LogWarning($"Quest '{id}' not found in QuestManager.");
         }
     }
+
 
     public void CompleteQuest(string id)
     {
@@ -81,7 +82,8 @@ public class QuestManager : MonoBehaviour
     {
         foreach (Quest q in quests)
         {
-            if (q.state == QuestState.InProgress && q.requiredSubtaskIDs.Length > 0)
+            // ✅ Only check quests that actually have subtasks
+            if (q.state == QuestState.InProgress && q.requiredSubtaskIDs != null && q.requiredSubtaskIDs.Length > 0)
             {
                 bool allDone = true;
                 foreach (string sub in q.requiredSubtaskIDs)
@@ -95,11 +97,13 @@ public class QuestManager : MonoBehaviour
 
                 if (allDone)
                 {
+                    Debug.Log($"[QuestManager] Auto-completing parent quest '{q.questID}' because all subtasks are done.");
                     CompleteQuest(q.questID);
                 }
             }
         }
     }
+
 
     public QuestState GetQuestState(string id)
     {

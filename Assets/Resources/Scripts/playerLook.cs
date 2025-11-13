@@ -21,22 +21,32 @@ public class PlayerLook : MonoBehaviour
         if (DialogueUI.Instance != null && DialogueUI.Instance.dialoguePanel.activeSelf)
         {
             LockCursor(false);
-            return; // Stop looking while dialogue is active
-        }
-        else
-        {
-            LockCursor(true);
+            return;
         }
 
-        // Raw mouse delta
+        // If shop is open, pause look input and unlock cursor
+        if (ShopUI.Instance != null && ShopUI.Instance.ShopIsOpen)
+        {
+            LockCursor(false);
+            return;
+        }
+
+        // Otherwise, lock cursor and allow look movement
+        LockCursor(true);
+
         mouseX = Input.GetAxisRaw("Mouse X") * sensitivity;
         mouseY = Input.GetAxisRaw("Mouse Y") * sensitivity;
     }
 
+
     void LateUpdate()
     {
-        // Only rotate camera if dialogue isn't open
+        // Stop rotating camera while dialogue is active
         if (DialogueUI.Instance != null && DialogueUI.Instance.dialoguePanel.activeSelf)
+            return;
+
+        // Stop rotating camera while shop is open
+        if (ShopUI.Instance != null && ShopUI.Instance.ShopIsOpen)
             return;
 
         xRotation -= mouseY;
@@ -45,6 +55,7 @@ public class PlayerLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
     }
+
 
     void LockCursor(bool locked)
     {

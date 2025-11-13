@@ -31,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (ShopUI.Instance != null && ShopUI.Instance.ShopIsOpen)
+            return;
+
+        
         // Input
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");

@@ -6,7 +6,7 @@ public class ShopUI : MonoBehaviour
     public GameObject shopPanel;
     public bool ShopIsOpen { get; private set; }
 
-    // 👉 Track what the player has bought during this quest
+    // Track what the player has bought during this quest
     private bool boughtRedbull = false;
     private bool boughtCigarettes = false;
 
@@ -55,7 +55,7 @@ public class ShopUI : MonoBehaviour
         }
     }
 
-    // 👉 Call this after each successful purchase
+    // Call this after each successful purchase
     private void CheckSpendAtShopQuestProgress()
     {
         // Make sure the ID string EXACTLY matches the one in QuestManager/QuestGiver

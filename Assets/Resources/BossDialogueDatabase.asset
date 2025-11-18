@@ -59,6 +59,23 @@ MonoBehaviour:
     - "You\u2019ll get more health out of a cigarette overall, and you can keep one
       lit to heal faster while you move."
     - "Don\u2019t overdo it though. That\u2019s advice for both healing and life."
+  - questID: ShootCowsQuest
+    introLines:
+    - "Alright\u2026 we\u2019ve got a new problem. And it\u2019s shaped like a giant,
+      angry steak on legs."
+    - The cows have gone feral. Red eyes, foam, the whole nightmare package.
+    - "I don\u2019t know what spooked them, but they\u2019re charging at anything
+      that moves."
+    - Take this gun and put down a few before they trample the whole farm!
+    activeLines:
+    - I can still hear their angry mooing echoing across the fields.
+    - You sure you counted right? Pretty sure a few are still stomping around.
+    - "Go on. Give \u2018em another surprise."
+    completeLines:
+    - "Wow\u2026 you actually did it."
+    - "I saw dust clouds, heard gunshots, and then\u2026 silence. Beautiful silence."
+    - You handled those cows like a seasoned hunter.
+    - "Take your reward. You\u2019ve earned it. Keep the gun too."
   allQuestsCompleteLines:
   - "You\u2019ve done everything I asked, and the ranch looks whole again\u2026 but
     some nights I still hear them."

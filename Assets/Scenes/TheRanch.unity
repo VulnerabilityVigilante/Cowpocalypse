@@ -41897,6 +41897,11 @@ MonoBehaviour:
     state: 0
     requiredSubtaskIDs: []
     coinReward: 100
+  - questID: ShootCowsQuest
+    description: Defeat the evil cows!
+    state: 0
+    requiredSubtaskIDs: []
+    coinReward: 100
 --- !u!4 &958699441
 Transform:
   m_ObjectHideFlags: 0
@@ -87789,6 +87794,7 @@ MonoBehaviour:
   parentQuestIDs:
   - RepairFenceQuest
   - SpendAtShopQuest
+  - ShootCowsQuest
   dialogueDatabase: {fileID: 11400000, guid: 3e9f5a2fbb5e2de448663b6d8aca2a58, type: 2}
 --- !u!114 &1942654108
 MonoBehaviour:

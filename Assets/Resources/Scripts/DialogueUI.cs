@@ -101,7 +101,6 @@ public class DialogueUI : MonoBehaviour
     {
         if (onDecline != null)
         {
-            // Let the callback decide whether to close or show new dialogue
             var temp = onDecline;
             onDecline = null;
             temp.Invoke();
@@ -112,13 +111,15 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
-
     public void Close()
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
         currentIndex = 0;
         SetCursorVisible(false);
+
+        // Notify Quest 3 spawner ONLY IF it's relevant
+        Quest3_CowWaveSpawner.Instance?.OnDialogueClosed();
     }
 
     void SetCursorVisible(bool visible)
@@ -126,6 +127,4 @@ public class DialogueUI : MonoBehaviour
         Cursor.visible = visible;
         Cursor.lockState = visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
-
-
 }

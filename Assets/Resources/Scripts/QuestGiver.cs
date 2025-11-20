@@ -6,7 +6,8 @@ public class QuestGiver : MonoBehaviour
     [Header("Parent Quests (in order)")]
     public List<string> parentQuestIDs = new List<string> {
         "RepairFenceQuest",
-        "SpendAtShopQuest"
+        "SpendAtShopQuest",
+        "ShootCowsQuest"
     };
 
     [Header("Dialogue Database")]

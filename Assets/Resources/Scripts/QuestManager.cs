@@ -29,6 +29,9 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance;
 
     public List<Quest> quests = new List<Quest>();
+    Dictionary<string, int> questProgress = new Dictionary<string, int>();
+    Dictionary<string, int> questProgressGoals = new Dictionary<string, int>();
+
 
     void Awake()
     {
@@ -78,7 +81,7 @@ public class QuestManager : MonoBehaviour
     }
 
 
-    private void RecheckAllParentQuests()
+    void RecheckAllParentQuests()
     {
         foreach (Quest q in quests)
         {
@@ -110,4 +113,34 @@ public class QuestManager : MonoBehaviour
         Quest quest = quests.Find(q => q.questID == id);
         return quest != null ? quest.state : QuestState.NotStarted;
     }
+
+    public void SetQuestGoal(string id, int goal)
+    {
+        if (!questProgressGoals.ContainsKey(id))
+            questProgressGoals.Add(id, goal);
+        else
+            questProgressGoals[id] = goal;
+
+        if (!questProgress.ContainsKey(id))
+            questProgress.Add(id, 0);
+    }
+
+    public void AddProgress(string id, int amount)
+    {
+        if (!questProgress.ContainsKey(id))
+            questProgress.Add(id, 0);
+
+        questProgress[id] += amount;
+
+        Debug.Log($"[Quest Progress] {id}: {questProgress[id]}/{questProgressGoals[id]}");
+
+        if (questProgressGoals.ContainsKey(id))
+        {
+            if (questProgress[id] >= questProgressGoals[id])
+            {
+                CompleteQuest(id);
+            }
+        }
+    }
+
 }

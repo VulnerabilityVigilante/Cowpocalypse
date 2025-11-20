@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5438169547181133721
+--- !u!1 &2347403915335237319
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 566247350299191274}
-  - component: {fileID: 32888462294411441}
-  - component: {fileID: 176222303009709907}
-  - component: {fileID: 1911792206108356321}
+  - component: {fileID: 8686778910234954659}
+  m_Layer: 0
+  m_Name: CowModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8686778910234954659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347403915335237319}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.85324883, y: -0.14614204, z: -0.37100318, w: 0.33610368}
+  m_LocalPosition: {x: 0, y: 3.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7877193143654365154}
+  m_Father: {fileID: 4085373972334943281}
+  m_LocalEulerAnglesHint: {x: -137, y: -47, z: 0}
+--- !u!1 &2501415409182670311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7877193143654365154}
+  - component: {fileID: 5083353486415758435}
+  - component: {fileID: 5724666931357626901}
+  - component: {fileID: 5726072567878627384}
+  - component: {fileID: 5296210331431667612}
+  - component: {fileID: 3378165896864126043}
   m_Layer: 6
   m_Name: Enemy Cow
   m_TagString: Untagged
@@ -19,37 +53,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &566247350299191274
+--- !u!4 &7877193143654365154
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438169547181133721}
+  m_GameObject: {fileID: 2501415409182670311}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.8566609, y: -0.12468349, z: -0.36245808, w: 0.34526837}
-  m_LocalPosition: {x: 21554.584, y: 221.03346, z: -387.25055}
-  m_LocalScale: {x: 1000, y: 999.99994, z: 1000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 13.6, z: 0}
+  m_LocalScale: {x: 1000, y: 999.99994, z: 999.9999}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5250889759612183813}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -137.004, y: -46.998993, z: 2.873993}
---- !u!33 &32888462294411441
+  - {fileID: 2643217655451923211}
+  m_Father: {fileID: 8686778910234954659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5083353486415758435
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438169547181133721}
+  m_GameObject: {fileID: 2501415409182670311}
   m_Mesh: {fileID: -5721213220885554954, guid: a53a0d25f5085a64ca421fed5b5a8f13, type: 3}
---- !u!23 &176222303009709907
+--- !u!23 &5724666931357626901
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438169547181133721}
+  m_GameObject: {fileID: 2501415409182670311}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -92,13 +126,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1911792206108356321
-BoxCollider:
+--- !u!114 &5726072567878627384
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438169547181133721}
+  m_GameObject: {fileID: 2501415409182670311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15178c74f547dd645a830c87fa2c8884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 30
+--- !u!136 &5296210331431667612
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501415409182670311}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -110,16 +157,109 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.016406927
+  m_Height: 0.06
+  m_Direction: 1
+  m_Center: {x: 8.019974e-12, y: -0.005, z: 0.016414136}
+--- !u!114 &3378165896864126043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501415409182670311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f9eb375c5342a43a99930428a13369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  moveSpeed: 60
+  rotateSpeed: 4
+  detectionRange: 5000
+  cowModel: {fileID: 0}
+--- !u!1 &7608853762424437970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4085373972334943281}
+  - component: {fileID: 3533579801076238349}
+  - component: {fileID: 5589855473913365418}
+  m_Layer: 0
+  m_Name: Enemy Cow (ROOT)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4085373972334943281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608853762424437970}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 18.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8686778910234954659}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &3533579801076238349
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608853762424437970}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.015554813, y: 0.049568996, z: 0.032813862}
-  m_Center: {x: -0.0000009544933, y: -0.0002691072, z: 0.016414123}
---- !u!1001 &8518490355273345757
+  m_Height: 60.06
+  m_Radius: 22.81
+  m_SlopeLimit: 45
+  m_StepOffset: 0
+  m_SkinWidth: 0.02
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 17.6, y: 10.8, z: -17.47}
+--- !u!114 &5589855473913365418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608853762424437970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f9eb375c5342a43a99930428a13369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Quest3_CowAI
+  moveSpeed: 30
+  rotateSpeed: 4
+  detectionRange: 5000
+  cowModel: {fileID: 8686778910234954659}
+--- !u!1001 &1893677632655178963
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 566247350299191274}
+    m_TransformParent: {fileID: 7877193143654365154}
     m_Modifications:
     - target: {fileID: 3864925339737347426, guid: c3abbfd759e66f244841565c3f946a8b, type: 3}
       propertyPath: m_Name
@@ -186,8 +326,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3abbfd759e66f244841565c3f946a8b, type: 3}
---- !u!4 &5250889759612183813 stripped
+--- !u!4 &2643217655451923211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4533200344888578008, guid: c3abbfd759e66f244841565c3f946a8b, type: 3}
-  m_PrefabInstance: {fileID: 8518490355273345757}
+  m_PrefabInstance: {fileID: 1893677632655178963}
   m_PrefabAsset: {fileID: 0}

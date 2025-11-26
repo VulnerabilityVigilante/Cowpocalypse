@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 5724666931357626901}
   - component: {fileID: 5726072567878627384}
   - component: {fileID: 5296210331431667612}
-  - component: {fileID: 3378165896864126043}
   m_Layer: 6
   m_Name: Enemy Cow
   m_TagString: Untagged
@@ -162,22 +161,6 @@ CapsuleCollider:
   m_Height: 0.06
   m_Direction: 1
   m_Center: {x: 8.019974e-12, y: -0.005, z: 0.016414136}
---- !u!114 &3378165896864126043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2501415409182670311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f9eb375c5342a43a99930428a13369, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveSpeed: 60
-  rotateSpeed: 4
-  detectionRange: 5000
-  cowModel: {fileID: 0}
 --- !u!1 &7608853762424437970
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4085373972334943281}
-  - component: {fileID: 3533579801076238349}
   - component: {fileID: 5589855473913365418}
   m_Layer: 0
   m_Name: Enemy Cow (ROOT)
@@ -212,31 +194,6 @@ Transform:
   - {fileID: 8686778910234954659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &3533579801076238349
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7608853762424437970}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 60.06
-  m_Radius: 22.81
-  m_SlopeLimit: 45
-  m_StepOffset: 0
-  m_SkinWidth: 0.02
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 17.6, y: 10.8, z: -17.47}
 --- !u!114 &5589855473913365418
 MonoBehaviour:
   m_ObjectHideFlags: 0

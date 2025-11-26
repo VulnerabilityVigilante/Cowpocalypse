@@ -5,6 +5,13 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
 {
     public static Quest3_CowWaveSpawner Instance;
 
+    [Header("Quest Gun")]
+    public GameObject gun;   // drag your gun object here
+
+    [Header("UI Elements")]
+    public GameObject crosshair;   // Drag your crosshair UI here
+
+
     [Header("Spawn Settings")]
     public GameObject cowPrefab;
     public int startingCowsPerWave = 5;
@@ -57,12 +64,21 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
 
     public void OnDialogueClosed()
     {
-        // Only start waves if quest is active
         if (!questActive) return;
 
-        Debug.Log("[Quest3] Dialogue closed — first cow wave begins in " + currentWaveDelay + " seconds!");
+        // ENABLE GUN
+        if (gun != null)
+            gun.SetActive(true);
+
+        // ENABLE CROSSHAIR
+        if (crosshair != null)
+            crosshair.SetActive(true);
+
+        Debug.Log("[Quest3] Dialogue closed — starting cow waves!");
         Invoke(nameof(SpawnWave), currentWaveDelay);
     }
+
+
 
     void SpawnWave()
     {

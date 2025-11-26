@@ -2686,6 +2686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Generic Rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 5864461481445873247, guid: 5c51ed71fe4081446926c13a2de1d4b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6496741572363324645, guid: 5c51ed71fe4081446926c13a2de1d4b9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2400002
@@ -4063,6 +4067,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 773d77e6860bffe43a64caf6ba9e9256, type: 3}
   m_PrefabInstance: {fileID: 1828722158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &104284766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5864461481445873247, guid: 5c51ed71fe4081446926c13a2de1d4b9, type: 3}
+  m_PrefabInstance: {fileID: 49473609}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &105021224 stripped
 Transform:
@@ -14591,6 +14600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556b23c53bfe5aa4db392f94b243c2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gun: {fileID: 104284766}
+  crosshair: {fileID: 1615681484}
   cowPrefab: {fileID: 7608853762424437970, guid: b1ab964fa66ee034f82bd05acf0f6032, type: 3}
   startingCowsPerWave: 5
   minSpawnDistance: 500
@@ -71105,7 +71116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1615681485
 MonoBehaviour:
   m_ObjectHideFlags: 0

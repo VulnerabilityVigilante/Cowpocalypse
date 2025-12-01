@@ -147,4 +147,24 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
         // Cancel future waves
         CancelInvoke(nameof(SpawnWave));
     }
+
+    public void StopAllCowSpawning()
+    {
+        questActive = false;
+
+        // Stop future waves
+        CancelInvoke(nameof(SpawnWave));
+
+        // Destroy all spawned cows
+        foreach (GameObject cow in activeCows)
+        {
+            if (cow != null)
+                Destroy(cow);
+        }
+
+        activeCows.Clear();
+
+        Debug.Log("🐄 [Quest3] Cow spawning stopped due to player death.");
+    }
+
 }

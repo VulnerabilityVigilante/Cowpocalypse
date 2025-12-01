@@ -171,6 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4085373972334943281}
   - component: {fileID: 5589855473913365418}
+  - component: {fileID: 5376511065142123946}
   m_Layer: 0
   m_Name: Enemy Cow (ROOT)
   m_TagString: Untagged
@@ -210,6 +211,26 @@ MonoBehaviour:
   rotateSpeed: 4
   detectionRange: 5000
   cowModel: {fileID: 8686778910234954659}
+--- !u!114 &5376511065142123946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608853762424437970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d325a47a6b3104ab93d82c6c7f78ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  attackInterval: 1.5
+  attackRange: 500
+  standingHitChance: 0.75
+  walkingHitChance: 0.45
+  sprintingHitChance: 0.12
+  standingDamage: 18
+  walkingDamage: 12
+  sprintingDamage: 6
 --- !u!1001 &1893677632655178963
 PrefabInstance:
   m_ObjectHideFlags: 0

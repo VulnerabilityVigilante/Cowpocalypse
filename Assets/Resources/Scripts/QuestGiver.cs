@@ -11,13 +11,17 @@ public class QuestGiver : MonoBehaviour
     };
 
     [Header("Dialogue Database")]
-    public DialogueDatabase dialogueDatabase; // 👈 Added this line
+    public DialogueDatabase dialogueDatabase;
 
     // This keeps track of the last quest that was given or completed
     private string currentQuestID = null;
 
-    private HashSet<string> rewardedQuests = new HashSet<string>();
+    public HashSet<string> rewardedQuests = new HashSet<string>();
 
+    void Start()
+    {
+        LoadRewardFlagsFromSave();
+    }
 
     public string GetActiveQuestID()
     {
@@ -101,6 +105,7 @@ public class QuestGiver : MonoBehaviour
             }
 
             QuestManager.Instance.StartQuest(nextQuestID);
+            QuestFileSaveSystem.SaveAll(this);
             Debug.Log($"[QuestGiver] ✅ Started parent quest: {nextQuestID}");
 
             // Auto-start subtasks if defined on the parent
@@ -146,6 +151,9 @@ public class QuestGiver : MonoBehaviour
                     }
 
                     rewardedQuests.Add(id);
+
+                    // Save immediately after giving reward
+                    QuestFileSaveSystem.SaveAll(this);
                     return;
                 }
             }
@@ -157,5 +165,32 @@ public class QuestGiver : MonoBehaviour
     {
         return rewardedQuests.Contains(questID);
     }
+
+    public void LoadRewardFlagsFromSave()
+    {
+        rewardedQuests.Clear();
+
+        string folder = System.IO.Path.Combine(
+            System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+            "CowpocalypseSave"
+        );
+
+        string path = System.IO.Path.Combine(folder, "save.txt");
+
+        if (!System.IO.File.Exists(path))
+            return;
+
+        string[] lines = System.IO.File.ReadAllLines(path);
+
+        foreach (string line in lines)
+        {
+            if (line.StartsWith("Rewarded:"))
+            {
+                string id = line.Split(':')[1];
+                rewardedQuests.Add(id);
+            }
+        }
+    }
+
 
 }

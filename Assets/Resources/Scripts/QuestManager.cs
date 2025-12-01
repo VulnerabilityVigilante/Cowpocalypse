@@ -38,12 +38,19 @@ public class QuestManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            // Load quest data from save.txt
+            QuestFileSaveSystem.LoadAll();
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
-    }
+}
+
+
 
     public void StartQuest(string id)
     {
@@ -67,6 +74,11 @@ public class QuestManager : MonoBehaviour
         if (quest != null && quest.state == QuestState.InProgress)
         {
             quest.state = QuestState.Completed;
+            // Save immediately when quest completes
+            QuestGiver questGiver = GameObject.FindObjectOfType<QuestGiver>();
+            if (questGiver != null)
+                QuestFileSaveSystem.SaveAll(questGiver);
+
             Debug.Log($"Quest completed: {quest.questID}");
             QuestEvents.OnQuestCompleted?.Invoke(id);
 

@@ -69,6 +69,12 @@ public class QuestManager : MonoBehaviour
         {
             Debug.LogWarning($"Quest '{id}' not found in QuestManager.");
         }
+
+        if (id == "ShootCowsQuest")
+        {
+            Inventory.Instance.SaveHealingItemsForQuest();
+        }
+
     }
 
 
@@ -91,6 +97,12 @@ public class QuestManager : MonoBehaviour
             {
                 AnimalSpawner.Instance.StopSpawning();
             }
+
+            if (id == "ShootCowsQuest")
+            {
+                Inventory.Instance.ClearQuestHealingBackup();
+            }
+
 
             RecheckAllParentQuests();
         }
@@ -158,5 +170,12 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
+
+    public bool IsQuestActive(string id)
+    {
+        Quest quest = quests.Find(q => q.questID == id);
+        return quest != null && quest.state == QuestState.InProgress;
+    }
+
 
 }

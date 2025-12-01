@@ -15,10 +15,33 @@ public class DeathScreenController : MonoBehaviour
         if (deathScreen != null)
             deathScreen.SetActive(false);
 
-        // Automatically find player scripts
-        move = FindObjectOfType<PlayerController>();
-        look = FindObjectOfType<PlayerLook>();
-        gun = FindObjectOfType<Quest3_PlayerGun>();
+        ReacquirePlayerReferences();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ReacquirePlayerReferences();
+
+        // Reset mouse lock after scene reload
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void ReacquirePlayerReferences()
+    {
+        move = FindAnyObjectByType<PlayerController>();
+        look = FindAnyObjectByType<PlayerLook>();
+        gun = FindAnyObjectByType<Quest3_PlayerGun>();
     }
 
     public void ShowDeathScreen()
@@ -39,15 +62,17 @@ public class DeathScreenController : MonoBehaviour
     // Button Hook
     public void RestartScene()
     {
-        QuestGiver questGiver = FindObjectOfType<QuestGiver>();
+        QuestGiver questGiver = FindAnyObjectByType<QuestGiver>();
 
-        // Save everything to save.txt
+        // Save everything
         if (questGiver != null)
             QuestFileSaveSystem.SaveAll(questGiver);
 
+        // Lock before loading
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Reload scene fresh
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-
-
 }

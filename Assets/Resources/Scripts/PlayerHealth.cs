@@ -44,7 +44,10 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("PLAYER DIED! 💀");
 
-        QuestGiver questGiver = FindObjectOfType<QuestGiver>();
+        // RESTORE HEALING ITEMS BEFORE SAVING
+        Inventory.Instance.RestoreHealingItemsAfterDeath();
+
+        QuestGiver questGiver = FindAnyObjectByType<QuestGiver>();
 
         // Reset active quest so it restarts properly
         if (questGiver != null)
@@ -57,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
                     q.state = QuestState.NotStarted;
             }
 
+            // NOW save with restored consumables
             QuestFileSaveSystem.SaveAll(questGiver);
         }
 
@@ -65,10 +69,11 @@ public class PlayerHealth : MonoBehaviour
             Quest3_CowWaveSpawner.Instance.StopAllCowSpawning();
 
         // Show death UI
-        DeathScreenController dsc = FindObjectOfType<DeathScreenController>();
+        DeathScreenController dsc = FindAnyObjectByType<DeathScreenController>();
         if (dsc != null)
             dsc.ShowDeathScreen();
     }
+
 
     public void Heal(int amount)
     {

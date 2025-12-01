@@ -36,10 +36,40 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentWaveCows = startingCowsPerWave;
         currentWaveDelay = baseWaveDelay;
+
+        // --- AUTO-RESUME CHECK ---
+        if (QuestManager.Instance != null &&
+            QuestManager.Instance.IsQuestActive("ShootCowsQuest"))
+        {
+            Debug.Log("[Quest3] Scene loaded while quest already active. Auto-starting wave spawner.");
+
+            questActive = true;
+
+            // RESTORE CONSUMABLES FOR QUEST SESSION
+            // If backup doesn't exist yet, rebuild it
+            if (Inventory.Instance.HasNoQuestBackup())
+            {
+                Inventory.Instance.RebuildHealingBackupFromCurrentValues();
+            }
+
+            Inventory.Instance.LoadHealingItemsForQuest();
+
+
+            // Enable gun and crosshair
+            if (gun != null) gun.SetActive(true);
+            if (crosshair != null) crosshair.SetActive(true);
+
+            // Immediately start wave spawning (dialogue already finished earlier)
+            Invoke(nameof(SpawnWave), currentWaveDelay);
+        }
+
     }
+
 
     void OnEnable()
     {
@@ -84,7 +114,7 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
     {
         if (!questActive) return; // just in case
 
-        Debug.Log($"🐄 [Quest3] Spawning wave with {currentWaveCows} cows!");
+        Debug.Log($"[Quest3] Spawning wave with {currentWaveCows} cows!");
 
         for (int i = 0; i < currentWaveCows; i++)
         {

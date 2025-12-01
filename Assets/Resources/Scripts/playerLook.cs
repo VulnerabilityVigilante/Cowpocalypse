@@ -12,8 +12,11 @@ public class PlayerLook : MonoBehaviour
 
     void Start()
     {
-        LockCursor(true);
+        // Lock only if no UI is open
+        if (DialogueUI.Instance == null && ShopUI.Instance == null)
+            LockCursor(true);
     }
+
 
     void Update()
     {

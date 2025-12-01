@@ -37,6 +37,14 @@ public static class QuestFileSaveSystem
         // --- Save Coins ---
         sb.AppendLine($"Coins:{CurrencyManager.Instance.GetCoins()}");
 
+        sb.AppendLine();
+
+        // --- Save Healing Items ---
+        sb.AppendLine($"Redbulls:{Inventory.Instance.redbullCount}");
+        sb.AppendLine($"CigarettePacks:{Inventory.Instance.cigaretteCount}");
+        sb.AppendLine($"CigaretteCharges:{Inventory.Instance.cigaretteCharges}");
+
+
         File.WriteAllText(SavePath, sb.ToString());
         Debug.Log($"💾 Saved to: {SavePath}");
     }
@@ -90,8 +98,31 @@ public static class QuestFileSaveSystem
                 int amount = int.Parse(line.Split(':')[1]);
                 CurrencyManager.Instance.SetCoinsFromLoad(amount);
             }
+
+            // Healing Items
+            if (line.StartsWith("Redbulls"))
+            {
+                Inventory.Instance.redbullCount = int.Parse(line.Split(':')[1]);
+            }
+
+            if (line.StartsWith("CigarettePacks"))
+            {
+                Inventory.Instance.cigaretteCount = int.Parse(line.Split(':')[1]);
+            }
+
+            if (line.StartsWith("CigaretteCharges"))
+            {
+                Inventory.Instance.cigaretteCharges = int.Parse(line.Split(':')[1]);
+            }
+
         }
 
+        HealingItemUI.Instance.RefreshAll();
+        Debug.Log($"Loaded Redbulls = {Inventory.Instance.redbullCount}");
+        Debug.Log($"Loaded CigPacks = {Inventory.Instance.cigaretteCount}");
+        Debug.Log($"Loaded Charges = {Inventory.Instance.cigaretteCharges}");
+
         Debug.Log($"📥 Loaded save from: {SavePath}");
+        
     }
 }

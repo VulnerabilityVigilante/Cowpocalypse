@@ -39,16 +39,20 @@ public class QuestManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            // Load quest data from save.txt
-            QuestFileSaveSystem.LoadAll();
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-}
+    }
+
+    void Start()
+    {
+        // ✅ now everything in the scene exists
+        QuestFileSaveSystem.LoadAll();
+    }
+
 
 
 

@@ -52,10 +52,10 @@ MonoBehaviour:
       work soon enough."
     completeLines:
     - "Got your Red Bull and smokes? Good. You\u2019ll need them."
-    - The Red Bull will give you a quick kick. Heals you up in a flash, but not by
-      much.
+    - The Red Bull will give you a quick kick. You can drink it by pressing 1. Heals
+      you up in a flash, but not by much.
     - The cigarettes are a little different. Pop one in your mouth and every puff
-      gives a short, sharp bit of healing.
+      gives a short, sharp bit of healing. You can use them by pressing 2.
     - "You\u2019ll get more health out of a cigarette overall, and you can keep one
       lit to heal faster while you move."
     - "Don\u2019t overdo it though. That\u2019s advice for both healing and life."

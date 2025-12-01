@@ -8,7 +8,15 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
 
     [Header("UI References")]
-    public Slider healthBar;   // drag UI slider here
+    public Slider healthBar;
+
+    public static PlayerHealth Instance;
+
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -61,6 +69,20 @@ public class PlayerHealth : MonoBehaviour
         if (dsc != null)
             dsc.ShowDeathScreen();
     }
+
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        if (healthBar != null)
+            healthBar.value = (float)currentHealth / maxHealth;
+
+        Debug.Log("Healed " + amount + " HP. Current HP: " + currentHealth);
+    }
+
 
 
 

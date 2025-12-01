@@ -24,7 +24,7 @@ public class ShopUI : MonoBehaviour
         if (purchased)
         {
             Debug.Log("You bought a Redbull!");
-            // TODO: Add to inventory when ready
+            Inventory.Instance.AddRedbull();   // ← ADD THIS LINE
 
             boughtRedbull = true;
             CheckSpendAtShopQuestProgress();
@@ -35,6 +35,7 @@ public class ShopUI : MonoBehaviour
         }
     }
 
+
     public void BuyCigarettes()
     {
         int cost = 30;
@@ -44,7 +45,7 @@ public class ShopUI : MonoBehaviour
         if (purchased)
         {
             Debug.Log("You bought a pack of cigarettes!");
-            // TODO: Add to inventory when ready
+            Inventory.Instance.AddCigarettes(); // ← ADD THIS LINE
 
             boughtCigarettes = true;
             CheckSpendAtShopQuestProgress();
@@ -54,6 +55,7 @@ public class ShopUI : MonoBehaviour
             Debug.Log("Not enough Schmeckles!");
         }
     }
+
 
     // Call this after each successful purchase
     private void CheckSpendAtShopQuestProgress()

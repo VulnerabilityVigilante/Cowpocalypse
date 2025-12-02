@@ -169,8 +169,16 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
         foreach (GameObject cow in activeCows)
         {
             if (cow != null)
+            {
+                // Trigger explosion manually
+                Quest3_CowHealth health = cow.GetComponentInChildren<Quest3_CowHealth>();
+                if (health != null)
+                    health.TriggerDeathExplosionOnly();
+
                 Destroy(cow);
+            }
         }
+
 
         activeCows.Clear();
 

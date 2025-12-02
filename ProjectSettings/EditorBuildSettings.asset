@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: cfe1548665eab3c4190602eb6844eeba
+  - enabled: 1
     path: Assets/Scenes/TheRanch.unity
     guid: 315db4548e28107428f13e05a792f769
   m_configObjects:

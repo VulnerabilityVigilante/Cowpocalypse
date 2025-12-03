@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3828237603118202716}
   - component: {fileID: 1352301002639264662}
   - component: {fileID: 5283594651674490015}
+  - component: {fileID: 4482289020311041594}
   m_Layer: 6
   m_Name: Cow 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,3 +113,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.015554813, y: 0.049568996, z: 0.032813862}
   m_Center: {x: -0.0000009544933, y: -0.0002691072, z: 0.016414123}
+--- !u!114 &4482289020311041594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703875359163574851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7ef86b52bbc93459848389713cab21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GenericAnimalHealth
+  maxHealth: 30
+  deathExplosionPrefab: {fileID: 8568601502059347107, guid: d483aafe1d439724d9abeb424419dee0, type: 3}

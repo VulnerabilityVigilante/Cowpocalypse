@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chicken
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 716ea7873b8601b41a516ec64c86fbe7, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 716ea7873b8601b41a516ec64c86fbe7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8783060996696470749}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 716ea7873b8601b41a516ec64c86fbe7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1949938187347107804}
   m_SourcePrefab: {fileID: 100100000, guid: 716ea7873b8601b41a516ec64c86fbe7, type: 3}
 --- !u!1 &8223177977770941053 stripped
 GameObject:
@@ -102,3 +109,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.016526952, y: 0.033438656, z: 0.040772587}
   m_Center: {x: 1.3418507e-14, y: 0.0010979138, z: 0.019671738}
+--- !u!114 &1949938187347107804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223177977770941053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7ef86b52bbc93459848389713cab21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 30
+  deathExplosionPrefab: {fileID: 8568601502059347107, guid: d483aafe1d439724d9abeb424419dee0, type: 3}

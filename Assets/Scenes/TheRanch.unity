@@ -92483,6 +92483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f893cd023039cb40a6768f9f42f6794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  redbullSound: {fileID: 8300000, guid: a7e422847cdd2264f939afdc5fc560a5, type: 3}
+  cigaretteSound: {fileID: 8300000, guid: da6ebc7d139b9654cabe9fdd4f3c119d, type: 3}
 --- !u!1001 &2124678384
 PrefabInstance:
   m_ObjectHideFlags: 0

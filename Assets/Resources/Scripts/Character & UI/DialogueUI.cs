@@ -22,9 +22,10 @@ public class DialogueUI : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
-        dialoguePanel.SetActive(false);
+        DialogueUI.Instance = this;
+        dialoguePanel.SetActive(false); // panel hidden on start
     }
+
 
     public void ShowDialogue(string[] lines, Action acceptCallback = null, Action declineCallback = null)
     {
@@ -118,9 +119,13 @@ public class DialogueUI : MonoBehaviour
         currentIndex = 0;
         SetCursorVisible(false);
 
+        // Close UI completely
+        gameObject.SetActive(false);
+
         // Notify Quest 3 spawner ONLY IF it's relevant
         Quest3_CowWaveSpawner.Instance?.OnDialogueClosed();
     }
+
 
     void SetCursorVisible(bool visible)
     {

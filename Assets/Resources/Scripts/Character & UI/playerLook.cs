@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerLook : MonoBehaviour
 {
@@ -12,43 +14,63 @@ public class PlayerLook : MonoBehaviour
 
     void Start()
     {
-        // Lock only if no UI is open
-        if (DialogueUI.Instance == null && ShopUI.Instance == null)
+        // Only lock if we're in the gameplay scene
+        if (SceneManager.GetActiveScene().name == "TheRanch")
+        {
             LockCursor(true);
+        }
+        else
+        {
+            LockCursor(false);
+        }
     }
+
 
 
     void Update()
     {
-        // If dialogue is open, pause look input and unlock cursor
+        // BLOCK MOUSE LOOK WHEN PAUSED
+        if (PauseMenu.GameIsPaused)
+        {
+            LockCursor(false);
+            return;
+        }
+
+        // Handle resume-from-pause immediate lock
+        if (!PauseMenu.GameIsPaused && Cursor.lockState != CursorLockMode.Locked)
+        {
+            LockCursor(true);
+        }
+
+        // Dialogue open blocks look
         if (DialogueUI.Instance != null && DialogueUI.Instance.dialoguePanel.activeSelf)
         {
             LockCursor(false);
             return;
         }
 
-        // If shop is open, pause look input and unlock cursor
+        // Shop open blocks look
         if (ShopUI.Instance != null && ShopUI.Instance.ShopIsOpen)
         {
             LockCursor(false);
             return;
         }
 
-        // Otherwise, lock cursor and allow look movement
         LockCursor(true);
 
         mouseX = Input.GetAxisRaw("Mouse X") * sensitivity;
         mouseY = Input.GetAxisRaw("Mouse Y") * sensitivity;
     }
 
-
     void LateUpdate()
     {
-        // Stop rotating camera while dialogue is active
+        // 🔹 BLOCK CAMERA ROTATION WHEN PAUSED
+        if (PauseMenu.GameIsPaused)
+            return;
+
         if (DialogueUI.Instance != null && DialogueUI.Instance.dialoguePanel.activeSelf)
             return;
 
-        // Stop rotating camera while shop is open
         if (ShopUI.Instance != null && ShopUI.Instance.ShopIsOpen)
             return;
 
@@ -58,7 +80,6 @@ public class PlayerLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
     }
-
 
     void LockCursor(bool locked)
     {

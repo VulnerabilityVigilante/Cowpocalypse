@@ -4958,13 +4958,35 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8459236965844117759, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d739ef1f81272e04fb6e9c59d44d3bf0, type: 2}
+    - target: {fileID: -6652725513331149018, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d739ef1f81272e04fb6e9c59d44d3bf0, type: 2}
+    - target: {fileID: -6652725513331149018, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d739ef1f81272e04fb6e9c59d44d3bf0, type: 2}
+    - target: {fileID: -2972031511153434926, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d739ef1f81272e04fb6e9c59d44d3bf0, type: 2}
     - target: {fileID: 919132149155446097, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
       propertyPath: m_Name
       value: Generic Rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 8536113399792927391, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d739ef1f81272e04fb6e9c59d44d3bf0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
+    - {fileID: 5392398322951045289, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
+    - {fileID: 8603541622604761643, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2de28c94ef82be744b65ca0bb67cfcce, type: 3}
       insertIndex: -1

@@ -61,6 +61,15 @@ public class QuestManager : MonoBehaviour
         Quest quest = quests.Find(q => q.questID == id);
         if (quest != null && quest.state == QuestState.NotStarted)
         {
+            // RESET quest progress when restarting ShootCowsQuest
+            if (id == "ShootCowsQuest")
+            {
+                if (questProgress.ContainsKey(id))
+                    questProgress[id] = 0;
+
+                Debug.Log("[ShootCowsQuest] Progress reset to 0 on quest restart.");
+            }
+
             quest.state = QuestState.InProgress;
             Debug.Log($"Quest started: {quest.questID}");
             QuestEvents.OnQuestStarted?.Invoke(id); // event for QuestSpawnGate

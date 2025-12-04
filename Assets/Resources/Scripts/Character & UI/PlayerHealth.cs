@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("PLAYER DIED! 💀");
+        Debug.Log("PLAYER DIED!");
 
         // RESTORE HEALING ITEMS BEFORE SAVING
         Inventory.Instance.RestoreHealingItemsAfterDeath();

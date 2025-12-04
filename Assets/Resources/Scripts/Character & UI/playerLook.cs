@@ -64,7 +64,7 @@ public class PlayerLook : MonoBehaviour
 
     void LateUpdate()
     {
-        // 🔹 BLOCK CAMERA ROTATION WHEN PAUSED
+        // BLOCK CAMERA ROTATION WHEN PAUSED
         if (PauseMenu.GameIsPaused)
             return;
 

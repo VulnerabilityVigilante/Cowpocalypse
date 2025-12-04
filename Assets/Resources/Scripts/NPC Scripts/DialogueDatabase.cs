@@ -24,7 +24,7 @@ public class DialogueDatabase : ScriptableObject
 
     [Header("Final dialogue when all parent quests are complete (optional)")]
     [TextArea(3, 5)]
-    public string[] allQuestsCompleteLines;  // ✅ now defined at the root level
+    public string[] allQuestsCompleteLines;
 
     public QuestDialogue GetDialogue(string questID)
     {

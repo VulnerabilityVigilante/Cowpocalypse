@@ -51,8 +51,6 @@ public class CurrencyManager : MonoBehaviour
     public void AddCoins(int amount)
     {
         currentCoins += amount;
-
-        // No PlayerPrefs — saving handled by QuestFileSaveSystem.SaveAll()
         UpdateUI();
     }
 
@@ -61,8 +59,6 @@ public class CurrencyManager : MonoBehaviour
         if (currentCoins >= amount)
         {
             currentCoins -= amount;
-
-            // No PlayerPrefs — saving handled by QuestFileSaveSystem.SaveAll()
             UpdateUI();
             return true;
         }

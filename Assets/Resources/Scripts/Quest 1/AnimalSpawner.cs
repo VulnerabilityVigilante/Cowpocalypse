@@ -53,7 +53,7 @@ public class AnimalSpawner : MonoBehaviour
     {
         if (spawningStarted) return;
         spawningStarted = true;
-        Debug.Log("🐄 Animal spawning started!");
+        Debug.Log("Animal spawning started!");
         SpawnInitialAnimals();
     }
 
@@ -65,7 +65,7 @@ public class AnimalSpawner : MonoBehaviour
             int repaired = FenceManager.Instance.logsRequired - Inventory.Instance.fenceParts;
             if (repaired <= 0)
             {
-                Debug.Log("✅ Fence fully repaired — animal chaos complete!");
+                Debug.Log("Fence fully repaired — animal chaos complete!");
                 DestroyAllAnimals();
             }
         }
@@ -85,7 +85,7 @@ public class AnimalSpawner : MonoBehaviour
 
         GameObject prefab = animalPrefabs[Random.Range(0, animalPrefabs.Count)];
 
-        // --- Find a position BEHIND the player ---
+        // Find a position BEHIND the player
         Vector3 behindDir = -player.forward; // opposite of where player looks
         Vector3 randomOffset = (Random.insideUnitSphere * spawnRadius);
         randomOffset.y = 0;
@@ -93,23 +93,23 @@ public class AnimalSpawner : MonoBehaviour
         // base position behind the player, a few meters away
         Vector3 basePos = player.position + behindDir.normalized * (spawnRadius * 1.5f) + randomOffset;
 
-        // --- Ground alignment ---
+        // Ground alignment
         if (Terrain.activeTerrain != null)
             basePos.y = Terrain.activeTerrain.SampleHeight(basePos);
         else if (Physics.Raycast(basePos + Vector3.up * 10f, Vector3.down, out var hit, 50f))
             basePos = hit.point;
 
-        // --- Create wrapper ---
+        // Create wrapper
         GameObject wrapper = new GameObject(prefab.name + "_Wrapper");
         wrapper.transform.position = basePos;
         wrapper.transform.rotation = Quaternion.identity;
 
-        // --- Instantiate animal prefab ---
+        // Instantiate animal prefab
         GameObject newAnimal = Instantiate(prefab, wrapper.transform);
         newAnimal.transform.localPosition = Vector3.zero;
         newAnimal.transform.localRotation = Quaternion.identity;
 
-        // --- Apply prefab-specific corrections ---
+        // Apply prefab-specific corrections
         string lowerName = prefab.name.ToLower();
 
         if (lowerName.Contains("cow"))
@@ -124,7 +124,7 @@ public class AnimalSpawner : MonoBehaviour
             wrapper.transform.position += Vector3.up * 20f;
         }
 
-        // --- Final small offset (safety) ---
+        // Final small offset (safety) 
         wrapper.transform.position += Vector3.up * 0.05f;
 
         activeAnimals.Add(wrapper);
@@ -145,7 +145,7 @@ public class AnimalSpawner : MonoBehaviour
         for (int i = 0; i < countToAdd; i++)
             SpawnAnimal();
 
-        Debug.Log("🐮 Animals multiplied! Total: " + activeAnimals.Count);
+        Debug.Log("Animals multiplied! Total: " + activeAnimals.Count);
     }
 
     bool IsPlayerLookingAway()

@@ -56,11 +56,11 @@ public class QuestGiver : MonoBehaviour
             // Log state info for debugging visibility
             Debug.Log($"[QuestGiver] Checking quest '{trimmedID}' | state = {state} | rewarded = {rewardedQuests.Contains(trimmedID)}");
 
-            // ✅ Skip any quests that were already rewarded
+            // Skip any quests that were already rewarded
             if (rewardedQuests.Contains(trimmedID))
                 continue;
 
-            // ✅ Return the first not-started quest
+            // Return the first not-started quest
             if (state == QuestState.NotStarted)
             {
                 Debug.Log($"[QuestGiver] Next available quest: {trimmedID}");
@@ -106,7 +106,7 @@ public class QuestGiver : MonoBehaviour
 
             QuestManager.Instance.StartQuest(nextQuestID);
             QuestFileSaveSystem.SaveAll(this);
-            Debug.Log($"[QuestGiver] ✅ Started parent quest: {nextQuestID}");
+            Debug.Log($"[QuestGiver] Started parent quest: {nextQuestID}");
 
             // Auto-start subtasks if defined on the parent
             if (quest.requiredSubtaskIDs != null)
@@ -114,7 +114,7 @@ public class QuestGiver : MonoBehaviour
                 foreach (string sub in quest.requiredSubtaskIDs)
                 {
                     QuestManager.Instance.StartQuest(sub);
-                    Debug.Log($"[QuestGiver] ✅ Auto-started subquest: {sub}");
+                    Debug.Log($"[QuestGiver] Auto-started subquest: {sub}");
                 }
             }
             return;
@@ -122,11 +122,11 @@ public class QuestGiver : MonoBehaviour
 
         if (AllQuestsComplete())
         {
-            Debug.Log("[QuestGiver] 🎯 All parent quests complete.");
+            Debug.Log("[QuestGiver] All parent quests complete.");
             return;
         }
 
-        Debug.Log("[QuestGiver] ⚠️ No new quest to give.");
+        Debug.Log("[QuestGiver] No new quest to give.");
     }
 
 

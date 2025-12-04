@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public enum QuestState { NotStarted, InProgress, Completed }
 
-// ✅ Move the event class INSIDE the same file but OUTSIDE of any MonoBehaviour
+// Move the event class INSIDE the same file but OUTSIDE of any MonoBehaviour
 public static class QuestEvents
 {
     public static System.Action<string> OnQuestStarted;
@@ -49,7 +49,6 @@ public class QuestManager : MonoBehaviour
 
     void Start()
     {
-        // ✅ now everything in the scene exists
         QuestFileSaveSystem.LoadAll();
     }
 
@@ -122,7 +121,7 @@ public class QuestManager : MonoBehaviour
     {
         foreach (Quest q in quests)
         {
-            // ✅ Only check quests that actually have subtasks
+            // Only check quests that actually have subtasks
             if (q.state == QuestState.InProgress && q.requiredSubtaskIDs != null && q.requiredSubtaskIDs.Length > 0)
             {
                 bool allDone = true;

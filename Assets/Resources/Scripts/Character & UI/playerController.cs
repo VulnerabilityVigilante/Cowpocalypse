@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         if (grounded && velocity.y < 0)
             velocity.y = -2f;
 
-        // ✅ Old Input System (works out of the box with WASD/arrow keys)
+        // Movement
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 

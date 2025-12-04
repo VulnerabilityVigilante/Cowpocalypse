@@ -47,7 +47,7 @@ public class Inventory : MonoBehaviour
             totalLogsCollected >= 4)
         {
             QuestManager.Instance.CompleteQuest("GatherWood");
-            Debug.Log("✅ GatherWood quest complete (total logs collected).");
+            Debug.Log("GatherWood quest complete (total logs collected).");
         }
     }
 
@@ -161,7 +161,7 @@ public class Inventory : MonoBehaviour
             saved_cigPacks == 0 &&
             saved_cigCharges == 0)
         {
-            Debug.Log("⚠ No saved healing items for quest. Leaving current values as-is.");
+            Debug.Log("No saved healing items for quest. Leaving current values as-is.");
             return;
         }
 

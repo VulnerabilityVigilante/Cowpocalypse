@@ -16,7 +16,7 @@ public class GunAudioController : MonoBehaviour
     void Awake()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.spatialBlend = 0f;  // 2D sound
+        audioSource.spatialBlend = 0f;
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.volume = 0.1f;
@@ -28,9 +28,7 @@ public class GunAudioController : MonoBehaviour
             audioSource.pitch = 1f;
     }
 
-    /// <summary>
-    /// Called by PlayerGun. TRUE = hit, FALSE = miss.
-    /// </summary>
+    // Called by PlayerGun. TRUE = hit, FALSE = miss.
     public void PlayShotSound(bool hit)
     {
         if (!gameObject.activeInHierarchy)

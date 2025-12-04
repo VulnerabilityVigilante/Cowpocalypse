@@ -7,16 +7,14 @@ public class GenericAnimalHealth : MonoBehaviour
     private int currentHealth;
 
     [Header("Death FX")]
-    public GameObject deathExplosionPrefab;  // Assign your cow explosion FX
+    public GameObject deathExplosionPrefab;
 
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    /// <summary>
-    /// Apply damage to this animal.
-    /// </summary>
+    // Apply damage to animal.
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
@@ -25,9 +23,7 @@ public class GenericAnimalHealth : MonoBehaviour
             Die();
     }
 
-    /// <summary>
-    /// Handles full death: explosion FX + destroying the root object.
-    /// </summary>
+    // Handles full death: explosion FX + destroying the root object.
     void Die()
     {
         Debug.Log($"[Animal] '{name}' died.");
@@ -46,9 +42,7 @@ public class GenericAnimalHealth : MonoBehaviour
         Destroy(transform.root.gameObject);
     }
 
-    /// <summary>
-    /// For situations where only the explosion should be triggered (mass kills, despawn, etc.)
-    /// </summary>
+    // For situations where only the explosion should be triggered (mass kills, despawn, etc.)
     public void TriggerDeathExplosionOnly()
     {
         if (deathExplosionPrefab != null)

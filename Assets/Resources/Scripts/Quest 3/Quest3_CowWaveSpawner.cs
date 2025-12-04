@@ -6,10 +6,10 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
     public static Quest3_CowWaveSpawner Instance;
 
     [Header("Quest Gun")]
-    public GameObject gun;   // drag your gun object here
+    public GameObject gun;   
 
     [Header("UI Elements")]
-    public GameObject crosshair;   // Drag your crosshair UI here
+    public GameObject crosshair;
 
 
     [Header("Spawn Settings")]
@@ -42,7 +42,7 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
         currentWaveCows = startingCowsPerWave;
         currentWaveDelay = baseWaveDelay;
 
-        // --- AUTO-RESUME CHECK ---
+        // AUTO-RESUME CHECK
         if (QuestManager.Instance != null &&
             QuestManager.Instance.IsQuestActive("ShootCowsQuest"))
         {
@@ -112,7 +112,7 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
 
     void SpawnWave()
     {
-        if (!questActive) return; // just in case
+        if (!questActive) return;
 
         Debug.Log($"[Quest3] Spawning wave with {currentWaveCows} cows!");
 
@@ -146,13 +146,13 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
     if (Physics.Raycast(spawnPos + Vector3.up * 50f, Vector3.down, out RaycastHit hit, 100f))
         spawnPos = hit.point;
 
-    spawnPos.y += 13f; // your cow vertical offset
+    spawnPos.y += 13f; // cow vertical offset
 
     GameObject cow = Instantiate(cowPrefab, spawnPos, Quaternion.identity);
 
     activeCows.Add(cow);
 
-    Debug.Log($"🐄 [Quest3] Spawned cow at distance {distance} at {spawnPos}");
+    Debug.Log($"[Quest3] Spawned cow at distance {distance} at {spawnPos}");
 }
 
 
@@ -202,7 +202,7 @@ public class Quest3_CowWaveSpawner : MonoBehaviour
 
         activeCows.Clear();
 
-        Debug.Log("🐄 [Quest3] Cow spawning stopped due to player death.");
+        Debug.Log("[Quest3] Cow spawning stopped due to player death.");
     }
 
 }

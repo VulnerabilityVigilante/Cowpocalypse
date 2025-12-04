@@ -11,11 +11,11 @@ public class HQScreenshotWithFlash : MonoBehaviour
     public int resolutionMultiplier = 1;
 
     [Header("Flash UI")]
-    public Image flashImage;         // Assign a full-screen UI Image here
+    public Image flashImage;         // Assign a full-screen UI Image
     public float flashDuration = 0.25f;
 
     [Header("Shutter Sound")]
-    public AudioClip shutterSound;   // MP3/WAV/etc.
+    public AudioClip shutterSound;  
     private AudioSource audioSource;
 
     void Start()

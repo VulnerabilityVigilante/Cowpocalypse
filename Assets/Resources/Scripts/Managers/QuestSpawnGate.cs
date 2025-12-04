@@ -13,7 +13,7 @@ public class QuestSpawnGate : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        // Subscribe to quest start event (we'll add it below)
+        // Subscribe to quest start event
         QuestEvents.OnQuestStarted += HandleQuestStarted;
     }
 

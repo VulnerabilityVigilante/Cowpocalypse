@@ -3,7 +3,7 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [Header("UI Reference")]
-    public DialogueUI dialogueUI;   // 👈 DRAG DialogueUI OBJECT HERE
+    public DialogueUI dialogueUI;
 
     [Header("Fallback Dialogue (if no quest giver or DB found)")]
     [TextArea(3, 5)]
@@ -56,9 +56,7 @@ public class DialogueTrigger : MonoBehaviour
         string debugNext = questGiver != null ? questGiver.GetNextQuestID() : "NO QUESTGIVER";
         Debug.Log($"[DialogueTrigger] Next quest: {debugNext}");
 
-        // -------------------------------------------
         // NO QUESTGIVER (fallback)
-        // -------------------------------------------
         if (questGiver == null || questGiver.dialogueDatabase == null)
         {
             dialogueUI.gameObject.SetActive(true);
@@ -66,9 +64,7 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
-        // -------------------------------------------
         // QUEST COMPLETED — NOT YET REWARDED
-        // -------------------------------------------
         foreach (string id in questGiver.parentQuestIDs)
         {
             Quest q = QuestManager.Instance.quests.Find(x => x.questID == id);
@@ -98,9 +94,7 @@ public class DialogueTrigger : MonoBehaviour
             }
         }
 
-        // -------------------------------------------
         // QUEST ACTIVE
-        // -------------------------------------------
         string active = questGiver.GetActiveQuestID();
         if (!string.IsNullOrEmpty(active))
         {
@@ -123,9 +117,7 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
-        // -------------------------------------------
         // OFFER NEXT QUEST
-        // -------------------------------------------
         string next = questGiver.GetNextQuestID();
         if (!string.IsNullOrEmpty(next))
         {
@@ -148,9 +140,7 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
-        // -------------------------------------------
         // ALL QUESTS COMPLETED
-        // -------------------------------------------
         if (questGiver.AllQuestsComplete())
         {
             var final = questGiver.dialogueDatabase.allQuestsCompleteLines;
@@ -171,10 +161,7 @@ public class DialogueTrigger : MonoBehaviour
             }
         }
     }
-
-    // -------------------------------------------
     // ACCEPT QUEST
-    // -------------------------------------------
     void OnAccept(string questID)
     {
         Debug.Log($"[DialogueTrigger] Accepted: {questID}");
@@ -201,10 +188,7 @@ public class DialogueTrigger : MonoBehaviour
             });
         }
     }
-
-    // -------------------------------------------
     // DECLINE QUEST
-    // -------------------------------------------
     void OnDecline()
     {
         dialogueUI.gameObject.SetActive(true);

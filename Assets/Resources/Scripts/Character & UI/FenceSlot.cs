@@ -59,7 +59,7 @@ public class FenceSlot : MonoBehaviour
         Debug.Log("Fence part placed!");
         InteractUI.Instance.HidePrompt();
 
-        // 👇 NEW: Notify the whisper system each time a fence is placed
+        // Notify the whisper system each time a fence is placed
         if (FenceManager.Instance != null)
             FenceManager.Instance.NotifyFencePlaced();
 

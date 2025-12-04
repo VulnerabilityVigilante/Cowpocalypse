@@ -85,7 +85,7 @@ public class Quest3_CowCombat : MonoBehaviour
 
     void PlayerHit(int dmg)
     {
-        Debug.Log($"⚠️ PLAYER SHOT! Damage: {dmg}");
+        Debug.Log($"PLAYER SHOT! Damage: {dmg}");
 
         PlayerHealth ph = player.GetComponent<PlayerHealth>();
         if (ph != null)

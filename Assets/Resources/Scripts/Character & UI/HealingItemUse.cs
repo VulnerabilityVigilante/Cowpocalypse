@@ -13,7 +13,7 @@ public class HealingItemUse : MonoBehaviour
         // Create a self-contained AudioSource on this object
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
-        audioSource.spatialBlend = 0f; // UI sound (2D)
+        audioSource.spatialBlend = 0f;
         audioSource.volume = 0.8f;
     }
 

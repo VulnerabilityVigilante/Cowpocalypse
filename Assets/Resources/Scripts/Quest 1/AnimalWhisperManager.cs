@@ -68,10 +68,10 @@ public class AnimalWhisperManager : MonoBehaviour
     {
         if (whisperSource == null) return;
 
-        // 👻 Sudden cutoff — the air goes dead
+        // Sudden cutoff — the air goes dead
         whisperSource.Stop();
         whisperSource.volume = 0f;
-        Debug.Log("🔇 Whispers abruptly stopped — the world falls silent.");
+        Debug.Log("Whispers abruptly stopped — the world falls silent.");
     }
 
 
